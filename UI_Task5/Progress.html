@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Bar with Sections</title>
+  <link rel="stylesheet" href="Progress.css">
+</head>
+<body>
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-background"></div>
+      <div class="progress-completed"></div>
+      <div class="step" data-step="1">
+        <span>1</span>
+        <p>Cart</p>
+      </div>
+      <div class="step" data-step="2">
+        <span>2</span>
+        <p>Address</p>
+      </div>
+      <div class="step" data-step="3">
+        <span>3</span>
+        <p>Payment</p>
+      </div>
+      <div class="step" data-step="4">
+        <span>4</span>
+        <p>Checkout</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <button id="prev" disabled>Previous</button>
+      <button id="next">Next</button>
+      <button id="done" style="display: none;">Done</button>
+    </div>
+  </div>
+
+  <!-- Step Sections -->
+  <div class="sections-container">
+    <div class="step-section" id="section-1">
+      <h2>Cart</h2>
+      <p>Select items for your cart.</p>
+      <input type="checkbox" class="step-checkbox" /> Mark this step as completed
+    </div>
+    <div class="step-section" id="section-2">
+      <h2>Address</h2>
+      <p>Enter your shipping address.</p>
+      <input type="checkbox" class="step-checkbox" /> Mark this step as completed
+    </div>
+    <div class="step-section" id="section-3">
+      <h2>Payment</h2>
+      <p>Choose your payment method.</p>
+      <input type="checkbox" class="step-checkbox" /> Mark this step as completed
+    </div>
+    <div class="step-section" id="section-4">
+      <h2>Checkout</h2>
+      <p>Review and confirm your order.</p>
+      <input type="checkbox" class="step-checkbox" /> Mark this step as completed
+    </div>
+  </div>
+
+  <script src="Progress.js"></script>
+</body>
+</html>
