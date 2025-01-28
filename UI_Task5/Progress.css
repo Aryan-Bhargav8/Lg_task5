@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,47 +9,35 @@ body {
     background: #e8e4e4;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    gap: 50px;
+}
+
 .progress-container {
     width: 80%;
     max-width: 600px;
-}
-
-.progress-bar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    margin-bottom: 20px;
 }
 
-.progress-background {
-    position: absolute;
-    top: 31%;
-    left: calc(5% + 10px);
-    width: calc(90% - 25px);
-    height: 4px;
-    background: #9d9c9c;
-    z-index: 1;
-    transform: translateY(-50%);
-}
+/* Normal styles */
 
-.progress-completed {
-    position: absolute;
-    top: 30%;
-    left: calc(-1% + 10px);
-    width: 0;
-    height: 4px;
-    background: #6fe373;
-    z-index: 2;
-    transform: translateY(-50%);
-    transition: width 0.5s ease-in-out;
+.steps {
+    display: flex;
+    width: 100%;
 }
 
 .step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 3;
+    gap: 10px;
+    width: 100%;
 }
 
 .step span {
@@ -57,39 +45,44 @@ body {
     justify-content: center;
     align-items: center;
     aspect-ratio: 1/1;
-    width: 40px;
+    width: 90px;
     border-radius: 50%;
-    background: #ccc;
+    border: solid 2px #555;
+    background-color: #ccc;
     color: white;
-    font-size: 20px;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.step.completed span {
-    background: #6fe373;
-    transform: scale(1.2);
+    font-size: 30px;
+    transition: all 0.3s ease;
 }
 
 .step p {
     margin: 0;
-    font-size: 14px;
+    font-size: 20px;
     color: #555;
+}
+
+.connector {
+    width: 50em;
+    height: 6px;
+    background-color: #ccc;
+    margin-top: 45px;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .buttons {
     display: flex;
     justify-content: space-between;
+    width: 80%;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 20px 30px;
     background: #6fe373;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 16px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     transition: background-color 0.3s ease;
 }
 
@@ -98,26 +91,13 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.step-checkbox {
-    margin-top: 5px;
-    cursor: pointer;
-}
-
-.step.in-progress span {
-    background: #ffda6c;
-    transform: scale(1.1);
-}
-
-
-
-
 #done {
     background: #6fe373;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     padding: 10px 20px;
     transition: background-color 0.3s ease;
 }
@@ -127,82 +107,128 @@ button:disabled {
 }
 
 
-/* sections */
-.sections-container {
-    margin-top: 20px;
+
+/* Active Styles */
+
+.step.active span {
+    background-color: #6fe373;
+    border: solid 2px #4b9d4e;
+    transition: all 0.3s ease;
 }
 
-.step-section {
-    display: none; 
-    margin-top: 10px;
-    background: #fff;
-    padding: 20px 80px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
+.step.active p {
+    color: #6fe373;
+    transition: all 0.3s ease;
 }
 
-.step-section h2 {
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    font-weight: bold;
+.connector.active {
+    background-color: #6fe373;
+    width: 50em;
+    transition: width 1s ease-in-out;
 }
 
-.step-section p {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-}
+/* Media query for tablets and smaller devices (max-width: 768px) */
+@media screen and (max-width: 768px) {
 
-.step-section input[type="checkbox"] {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.step-section.show {
-    display: block; 
-}
-
-@media (max-width: 768px) {
-    .step-section {
-        padding: 15px 40px; 
-        border-radius: 8px;
+    .container {
+        width: 75%;;
+        gap: 20px; /* Reduce gap between elements */
     }
 
-    .step-section h2 {
-        font-size: 2rem; 
-        margin-bottom: 20px;
+    .progress-container {
+        width: 80%; /* Adjust width for smaller screens */
+        max-width: 100%;/* Allow progress bar to expand fully */
+        /* gap: 10px; Reduce gap between elements */
     }
 
-    .step-section p {
-        font-size: 1.2rem; 
-        margin-bottom: 15px;
+    .connector {
+        margin-top: 30px;
+        width: 100%; /* Adjust connector width to fit smaller screens */
+    }
+    .connector.active{
+        width: 100%;
     }
 
-    .step-section input[type="checkbox"] {
-        margin-top: 8px;
-        margin-bottom: 15px;
+    .step span {
+        width: 60px; /* Reduce circle size */
+        font-size: 18px; /* Smaller font size in circles */
+    }
+
+    .step p {
+        font-size: 14px; /* Smaller text for step descriptions */
+    }
+
+    button {
+        font-size: 16px; /* Adjust button text size */
+        padding: 12px 20px; /* Reduce button padding */
     }
 }
 
-
-@media (max-width: 480px) {
-    .step-section {
-        padding: 10px 20px; 
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Media query for mobile devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 70%; /* Adjust width for smaller screens */
+        gap: 10px; /* Further reduce gap between elements */
+    }
+    .progress-container {
+        width: 100%; /* Full width for small screens */
     }
 
-    .step-section h2 {
-        font-size: 1.5rem; 
-        margin-bottom: 15px;
+    .connector {
+        width: 100%; /* Narrower connectors for compact layout */
+        height: 4px; /* Reduce connector height */
+        margin-top: 22.5px; /* Reduce margin for connectors */
+    }
+    .connector.active{
+        width: 100%;
+    }
+    .step span {
+        width: 45px; /* Smaller step circles */
+        font-size: 14px; /* Smaller font size inside circles */
     }
 
-    .step-section p {
-        font-size: 1rem; 
-        margin-bottom: 10px;
+    .step p {
+        font-size: 12px; /* Smaller text for step descriptions */
     }
 
-    .step-section input[type="checkbox"] {
-        margin-top: 5px;
-        margin-bottom: 10px;
+    button {
+        font-size: 14px; /* Further reduce button text size */
+        padding: 10px 15px; /* Smaller buttons */
+    }
+}
+
+/* Media query for large screens (min-width: 1200px) */
+@media screen and (min-width: 1200px) {
+
+    .container {
+        width: 90%; /* Make the container take up more space */
+        gap: 70px; /* Increase gap between elements */
+    }
+
+    .progress-container {
+        width: 100%; /* Allow the progress bar to span fully across the container */
+        max-width: 1200px;
+    }
+
+    .connector {
+        width: 140em; /* Extend connectors to create a wide appearance */
+        height: 8px; /* Slightly increase the height for better visibility */
+        margin-top: 60px;
+    }
+    .connector.active{
+        width: 140em;
+    }
+    .step span {
+        width: 120px; /* Larger circles for high-resolution visibility */
+        font-size: 36px; /* Larger font inside circles */
+    }
+
+    .step p {
+        font-size: 24px; /* Larger text for step descriptions */
+    }
+
+    button {
+        font-size: 24px; /* Larger button text for better readability */
+        padding: 25px 40px; /* Larger button size */
     }
 }
