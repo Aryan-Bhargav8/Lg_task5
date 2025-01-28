@@ -3,11 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const indicator = document.querySelector('.tab-indicator');
 
     const updateIndicator = (activeTab) => {
-        const tabRect = activeTab.getBoundingClientRect();
+        const span = activeTab.querySelector('span'); 
+        const spanRect = span.getBoundingClientRect(); 
         const containerRect = activeTab.parentElement.getBoundingClientRect();
 
-        indicator.style.width = `${tabRect.width}px`;
-        indicator.style.left = `${tabRect.left - containerRect.left}px`;
+        indicator.style.width = `${spanRect.width}px`; 
+        indicator.style.left = `${spanRect.left - containerRect.left}px`; 
     };
 
     tabs.forEach((tab) => {
